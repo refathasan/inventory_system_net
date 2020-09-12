@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Configuration;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
+using INVENTORY_MANAGEMENT;
 using MySql.Data.MySqlClient;
 
 public class DBConnect
@@ -8,8 +11,10 @@ public class DBConnect
 	private string server;
 	private string database;
 	private string uid;
-	private string password;	
-	public DBConnect()
+	private string password;
+    //invConnectionString
+    public string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["invConnectionString"].ConnectionString;
+    public DBConnect()
 	{
 		Initialize();
 	}
@@ -63,5 +68,27 @@ public class DBConnect
             MessageBox.Show(ex.Message);
             return false;
         }
+
+    }
+    public bool insertInventory(int productID, string productName,string productDescription, int productUnitPrice)
+    {
+        MySqlConnection mySqlConnection = new MySqlConnection(CONNECTION_STRING);
+        mySqlConnection.Open();
+        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+        mySqlCommand.CommandText = QuaryStatements.ADD_INVENTORY;
+        mySqlCommand.Parameters.AddWithValue("@inv_id",productID );
+        mySqlCommand.Parameters.AddWithValue("@inv_name", productName);
+        mySqlCommand.Parameters.AddWithValue("inv_description", productDescription);
+        mySqlCommand.Parameters.AddWithValue("inv_unit_price", productUnitPrice);
+
+        if (mySqlCommand.ExecuteNonQuery() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 }

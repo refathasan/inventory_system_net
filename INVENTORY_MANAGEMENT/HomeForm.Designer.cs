@@ -31,19 +31,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home));
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddStock = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnSell = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.allProductNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentStockGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentStockGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(132, 49);
+            this.label1.Location = new System.Drawing.Point(114, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(414, 31);
             this.label1.TabIndex = 1;
@@ -60,23 +68,26 @@
             this.btnAddStock.UseVisualStyleBackColor = false;
             this.btnAddStock.Click += new System.EventHandler(this.btnAddStock_Click);
             // 
-            // button3
+            // btnSell
             // 
-            this.button3.Location = new System.Drawing.Point(315, 340);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 94);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSell.BackColor = System.Drawing.Color.White;
+            this.btnSell.Image = ((System.Drawing.Image)(resources.GetObject("btnSell.Image")));
+            this.btnSell.Location = new System.Drawing.Point(315, 340);
+            this.btnSell.Name = "btnSell";
+            this.btnSell.Size = new System.Drawing.Size(100, 94);
+            this.btnSell.TabIndex = 4;
+            this.btnSell.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnRefresh
             // 
-            this.button4.Location = new System.Drawing.Point(463, 340);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 94);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.Location = new System.Drawing.Point(463, 340);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(100, 94);
+            this.btnRefresh.TabIndex = 5;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnExit
             // 
@@ -105,7 +116,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(588, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(661, 27);
             this.pictureBox1.MaximumSize = new System.Drawing.Size(100, 100);
             this.pictureBox1.MinimumSize = new System.Drawing.Size(25, 25);
             this.pictureBox1.Name = "pictureBox1";
@@ -115,23 +126,77 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.WaitOnLoad = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.stockToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allProductNameToolStripMenuItem,
+            this.currentStockToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(69, 20);
+            this.toolStripMenuItem1.Text = "Inventory";
+            // 
+            // allProductNameToolStripMenuItem
+            // 
+            this.allProductNameToolStripMenuItem.Name = "allProductNameToolStripMenuItem";
+            this.allProductNameToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.allProductNameToolStripMenuItem.Text = "All Product Name";
+            // 
+            // currentStockToolStripMenuItem
+            // 
+            this.currentStockToolStripMenuItem.Name = "currentStockToolStripMenuItem";
+            this.currentStockToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.currentStockToolStripMenuItem.Text = "Current Stock";
+            // 
+            // stockToolStripMenuItem
+            // 
+            this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
+            this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.stockToolStripMenuItem.Text = "Stock";
+            // 
+            // currentStockGridView
+            // 
+            this.currentStockGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.currentStockGridView.Location = new System.Drawing.Point(27, 105);
+            this.currentStockGridView.Name = "currentStockGridView";
+            this.currentStockGridView.Size = new System.Drawing.Size(734, 219);
+            this.currentStockGridView.TabIndex = 8;
+            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.currentStockGridView);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.btnSell);
             this.Controls.Add(this.btnAddStock);
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "home";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HOME";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentStockGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,10 +207,16 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddProduct;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnSell;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnAddStock;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem allProductNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem currentStockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
+        private System.Windows.Forms.DataGridView currentStockGridView;
     }
 }
 

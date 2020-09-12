@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,6 +44,14 @@ namespace INVENTORY_MANAGEMENT
         private void btnAddStock_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(QuaryStatements.STOCK_QUERY, dBConnect.CONNECTION_STRING);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet);
+            currentStockGridView.DataSource = dataSet.Tables[0];
         }
     }
 }
