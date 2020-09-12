@@ -19,7 +19,11 @@ namespace INVENTORY_MANAGEMENT
             " inventory(inv_id,inv_name,inv_description,inv_unit_price)" +
             " VALUES(@inv_id,@inv_name,@inv_description,@inv_unit_price);";
 
+        public const string SELECT_INVENTORY = "select * FROM inventory";
 
+        public const string INSERT_STOCK_QUANTITY = "INSERT INTO" +
+            " stock(stock_id,stock_qunantity)" +
+            "VALUES(@stock_id,@stock_qunantity);";
 
     }
 }

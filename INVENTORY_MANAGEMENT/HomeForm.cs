@@ -43,7 +43,8 @@ namespace INVENTORY_MANAGEMENT
 
         private void btnAddStock_Click(object sender, EventArgs e)
         {
-
+            AddStockForm addStockForm = new AddStockForm();
+            addStockForm.Show();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

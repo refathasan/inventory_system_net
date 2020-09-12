@@ -91,4 +91,23 @@ public class DBConnect
         }
         
     }
+    public bool insertStock(int productID, int productQunatity )
+    {
+        MySqlConnection mySqlConnection = new MySqlConnection(CONNECTION_STRING);
+        mySqlConnection.Open();
+        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+        mySqlCommand.CommandText = QuaryStatements.INSERT_STOCK_QUANTITY;
+        mySqlCommand.Parameters.AddWithValue("@stock_id", productID);
+        mySqlCommand.Parameters.AddWithValue("@stock_qunantity", productQunatity);
+
+        if (mySqlCommand.ExecuteNonQuery() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 }
